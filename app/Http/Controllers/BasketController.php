@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Basket;
 use App\Models\Product;
 use App\Models\BasketItem;
-use Illuminate\Http\Request;
 use App\Services\BasketPricingService;
 
 class BasketController extends Controller
