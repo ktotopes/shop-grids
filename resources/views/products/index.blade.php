@@ -182,241 +182,63 @@
                                  aria-labelledby="nav-grid-tab">
                                 <div class="row">
                                     @foreach($products as $product)
-                                      @include('partials._single_product',['product' => $product])
+                                        @include('partials._single_product',['product' => $product])
                                     @endforeach
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <!-- Pagination -->
-                                        <div class="pagination left">
-                                            <ul class="pagination-list">
-                                                <li><a href="javascript:void(0)">1</a></li>
-                                                <li class="active"><a href="javascript:void(0)">2</a></li>
-                                                <li><a href="javascript:void(0)">3</a></li>
-                                                <li><a href="javascript:void(0)">4</a></li>
-                                                <li><a href="javascript:void(0)"><i
-                                                            class="lni lni-chevron-right"></i></a></li>
-                                            </ul>
-                                            {{$products->links()}}
-                                        </div>
-                                        <!--/ End Pagination -->
+                                        {{$products->links()}}
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-12">
-                                        <!-- Start Single Product -->
-                                        <div class="single-product">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <img src="https://via.placeholder.com/335x335" alt="#">
-                                                        <div class="button">
-                                                            <a href="product-details.html" class="btn"><i
-                                                                    class="lni lni-cart"></i> Add to
-                                                                Cart</a>
+                                    @foreach($products as $product)
+                                        <div class="col-lg-12 col-md-12 col-12">
+                                            <div class="single-product">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-4 col-md-4 col-12">
+                                                        <div class="product-image">
+                                                            <img src="https://via.placeholder.com/335x335" alt="#">
+
+                                                          @include('products.partials._product_badge',['product' => $product])
+
+                                                            <div class="button">
+                                                                <a href="{{route('basket.add-to-basket',$product)}}"
+                                                                   class="btn"><i
+                                                                        class="lni lni-cart"></i> Add to
+                                                                    Cart</a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-8 col-12">
-                                                    <div class="product-info">
-                                                        <span class="category">Watches</span>
-                                                        <h4 class="title">
-                                                            <a href="product-grids.html">Xiaomi Mi Band 5</a>
-                                                        </h4>
-                                                        <ul class="review">
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star"></i></li>
-                                                            <li><span>4.0 Review(s)</span></li>
-                                                        </ul>
-                                                        <div class="price">
-                                                            <span>$199.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Product -->
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-12">
-                                        <!-- Start Single Product -->
-                                        <div class="single-product">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <img src="https://via.placeholder.com/335x335" alt="#">
-                                                        <span class="sale-tag">-25%</span>
-                                                        <div class="button">
-                                                            <a href="product-details.html" class="btn"><i
-                                                                    class="lni lni-cart"></i> Add to
-                                                                Cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-8 col-12">
-                                                    <div class="product-info">
-                                                        <span class="category">Speaker</span>
-                                                        <h4 class="title">
-                                                            <a href="product-grids.html">Big Power Sound Speaker</a>
-                                                        </h4>
-                                                        <ul class="review">
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><span>5.0 Review(s)</span></li>
-                                                        </ul>
-                                                        <div class="price">
-                                                            <span>$275.00</span>
-                                                            <span class="discount-price">$300.00</span>
+                                                    <div class="col-lg-8 col-md-8 col-12">
+                                                        <div class="product-info">
+                                                            <span class="category">{{$product->category->name}}</span>
+                                                            <h4 class="title">
+                                                                <a href="{{route('products.show',$product)}}">{{$product->name}}</a>
+                                                            </h4>
+                                                            <ul class="review">
+                                                              @include('partials._review')
+                                                            </ul>
+                                                           @include('partials._price',['product' => $product])
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Single Product -->
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-12">
-                                        <!-- Start Single Product -->
-                                        <div class="single-product">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <img src="https://via.placeholder.com/335x335" alt="#">
-                                                        <div class="button">
-                                                            <a href="product-details.html" class="btn"><i
-                                                                    class="lni lni-cart"></i> Add to
-                                                                Cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-8 col-12">
-                                                    <div class="product-info">
-                                                        <span class="category">Camera</span>
-                                                        <h4 class="title">
-                                                            <a href="product-grids.html">WiFi Security Camera</a>
-                                                        </h4>
-                                                        <ul class="review">
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><span>5.0 Review(s)</span></li>
-                                                        </ul>
-                                                        <div class="price">
-                                                            <span>$399.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    @endforeach
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <!-- Pagination -->
+                                                {{$products->links()}}
+                                                <!--/ End Pagination -->
                                             </div>
                                         </div>
-                                        <!-- End Single Product -->
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-12">
-                                        <!-- Start Single Product -->
-                                        <div class="single-product">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <img src="https://via.placeholder.com/335x335" alt="#">
-                                                        <span class="new-tag">New</span>
-                                                        <div class="button">
-                                                            <a href="product-details.html" class="btn"><i
-                                                                    class="lni lni-cart"></i> Add to
-                                                                Cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-8 col-12">
-                                                    <div class="product-info">
-                                                        <span class="category">Phones</span>
-                                                        <h4 class="title">
-                                                            <a href="product-grids.html">iphone 6x plus</a>
-                                                        </h4>
-                                                        <ul class="review">
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><span>5.0 Review(s)</span></li>
-                                                        </ul>
-                                                        <div class="price">
-                                                            <span>$400.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Product -->
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-12">
-                                        <!-- Start Single Product -->
-                                        <div class="single-product">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4 col-md-4 col-12">
-                                                    <div class="product-image">
-                                                        <img src="https://via.placeholder.com/335x335" alt="#">
-                                                        <span class="sale-tag">-50%</span>
-                                                        <div class="button">
-                                                            <a href="product-details.html" class="btn"><i
-                                                                    class="lni lni-cart"></i> Add to
-                                                                Cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-8 col-12">
-                                                    <div class="product-info">
-                                                        <span class="category">Headphones</span>
-                                                        <h4 class="title">
-                                                            <a href="product-grids.html">PX7 Wireless Headphones</a>
-                                                        </h4>
-                                                        <ul class="review">
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star-filled"></i></li>
-                                                            <li><i class="lni lni-star"></i></li>
-                                                            <li><span>4.0 Review(s)</span></li>
-                                                        </ul>
-                                                        <div class="price">
-                                                            <span>$100.00</span>
-                                                            <span class="discount-price">$200.00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Single Product -->
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <!-- Pagination -->
-                                        <div class="pagination left">
-                                            <ul class="pagination-list">
-                                                <li><a href="javascript:void(0)">1</a></li>
-                                                <li class="active"><a href="javascript:void(0)">2</a></li>
-                                                <li><a href="javascript:void(0)">3</a></li>
-                                                <li><a href="javascript:void(0)">4</a></li>
-                                                <li><a href="javascript:void(0)"><i
-                                                            class="lni lni-chevron-right"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <!--/ End Pagination -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection

@@ -8,3 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - add basket functionality 
 
+## [1.0.1] - 2022-06-08
+### Added
+- made list view on products page
+- ### Fixed
+- product badges of discount and is_new
+
+

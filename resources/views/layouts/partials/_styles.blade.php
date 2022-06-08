@@ -3,3 +3,5 @@
 <link rel="stylesheet" href="{{asset('theme/css/tiny-slider.css')}}"/>
 <link rel="stylesheet" href="{{asset('theme/css/glightbox.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('theme/css/main.css')}}"/>
+
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
