@@ -204,10 +204,7 @@
                                                           @include('products.partials._product_badge',['product' => $product])
 
                                                             <div class="button">
-                                                                <a href="{{route('basket.add-to-basket',$product)}}"
-                                                                   class="btn"><i
-                                                                        class="lni lni-cart"></i> Add to
-                                                                    Cart</a>
+                                                             @include('products.partials._add_to_cart')
                                                             </div>
                                                         </div>
                                                     </div>

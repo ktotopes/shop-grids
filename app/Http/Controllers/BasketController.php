@@ -26,7 +26,13 @@ class BasketController extends Controller
 
     public function addToBasket(Product $product)
     {
-        activeBasket()->addProduct($product);
+        $activeBasket = activeBasket();
+        
+        if ($activeBasket->products->contains($product)) {
+            return back();
+        }
+
+        $activeBasket->addProduct($product);
 
         return back();
 

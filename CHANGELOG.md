@@ -14,4 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ### Fixed
 - product badges of discount and is_new
 
+## [1.0.2] - 2022-06-10
+### Feature
+- cannot add same product to basket
+- switch add to cart button to go to basket if product in basket
+
 

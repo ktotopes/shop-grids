@@ -29,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('layouts.partials._header', CategoriesComposer::class);
 
-        View::composer('layouts.partials._header', BasketComposer::class);
-        View::composer('basket.index', BasketComposer::class);
+        View::composer('*', BasketComposer::class);
     }
 }
