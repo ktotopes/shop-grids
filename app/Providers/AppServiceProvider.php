@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Composers\CurrencyComposer;
+use App\Composers\LanguagesComposer;
 use App\Composers\CategoriesComposer;
 use Illuminate\Support\Facades\View;
 use App\Composers\BasketComposer;
@@ -30,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.partials._header', CategoriesComposer::class);
 
         View::composer('*', BasketComposer::class);
+
+        View::composer('layouts.partials._header', CurrencyComposer::class);
+        View::composer('layouts.partials._header', LanguagesComposer::class);
     }
 }

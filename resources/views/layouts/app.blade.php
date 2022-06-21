@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-
+<html class="no-js" lang="{{app()->getLocale()}}">
 <head>
     @include('layouts.partials._meta')
 

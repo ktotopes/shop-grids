@@ -27,8 +27,8 @@ if (!function_exists('money')) {
 if (!function_exists('activeBasket')) {
     function activeBasket(): Basket
     {
-        if (session()->has('basketId')){
-           return Basket::query()->where('id',session()->get('basketId'))->first();
+        if (session()->has('basketId') && ($basket = Basket::query()->where('id',session()->get('basketId'))->first())){
+          return $basket;
         }
 
         $basket = new Basket();

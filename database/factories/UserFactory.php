@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -26,16 +27,23 @@ class UserFactory extends Factory
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return static
-     */
     public function unverified()
     {
         return $this->state(function (array $attributes) {
             return [
                 'email_verified_at' => null,
+            ];
+        });
+    }
+
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'debilkotik',
+                'is_admin' => 1,
+                'email' => 'admin12@email.ru',
+                'password' => Hash::make('341998'),
             ];
         });
     }

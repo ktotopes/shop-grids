@@ -19,4 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - cannot add same product to basket
 - switch add to cart button to go to basket if product in basket
 
+## [1.0.3] - 2022-06-21
+### Feature
+- add admin group of routes
+- add new entities Currencies and Languages
+
 

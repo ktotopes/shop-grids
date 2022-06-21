@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -10,7 +11,7 @@
                     <div class="slider-head">
                         <!-- Start Hero Slider -->
                         <div class="hero-slider">
-                          @foreach($headerProducts['sliderProducts'] as $product)
+                            @foreach($headerProducts['sliderProducts'] as $product)
                                 <div class="single-slider"
                                      style="background-image: url(https://via.placeholder.com/800x500);">
                                     <div class="content">
@@ -24,7 +25,7 @@
                                         </div>
                                     </div>
                                 </div>
-                          @endforeach
+                            @endforeach
                         </div>
                         <!-- End Hero Slider -->
                     </div>
@@ -52,7 +53,8 @@
                                     <h2>Weekly Sale!</h2>
                                     <p>Saving up to 50% off all online store items this week.</p>
                                     <div class="button">
-                                        <a class="btn" href="{{route('products.show',$headerProducts['product'])}}">Shop Now</a>
+                                        <a class="btn" href="{{route('products.show',$headerProducts['product'])}}">Shop
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +115,8 @@
                             <p>{{$specialOffer['bottomProduct']->description}}</p>
                             @include('partials._price',['product' => $specialOffer['bottomProduct']])
                             <div class="button">
-                                <a href="{{route('products.show',$specialOffer['bottomProduct'])}}" class="btn">Shop Now</a>
+                                <a href="{{route('products.show',$specialOffer['bottomProduct'])}}" class="btn">Shop
+                                    Now</a>
                             </div>
                         </div>
                     </div>
@@ -128,7 +131,9 @@
                             @endif
                         </div>
                         <div class="text">
-                            <h2><a href="{{route('products.show',$specialOffer['specialProduct'])}}">{{$specialOffer['specialProduct']->name}}</a></h2>
+                            <h2>
+                                <a href="{{route('products.show',$specialOffer['specialProduct'])}}">{{$specialOffer['specialProduct']->name}}</a>
+                            </h2>
                             @include('partials._review',['product' => $specialOffer['specialProduct']])
                             @include('partials._price',['product' => $specialOffer['specialProduct']])
                             <p>{{$specialOffer['specialProduct']->description}}</p>

@@ -9,31 +9,27 @@
                             <li>
                                 <div class="select-position">
                                     <select id="select4">
-                                        <option value="0" selected>$ USD</option>
-                                        <option value="1">€ EURO</option>
-                                        <option value="2">$ CAD</option>
-                                        <option value="3">₹ INR</option>
-                                        <option value="4">¥ CNY</option>
-                                        <option value="5">৳ BDT</option>
+                                        @foreach($currencies as $currency)
+                                            <option
+                                                value="{{$currency->name}}">{{$currency->symbol}} {{$currency->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </li>
                             <li>
                                 <div class="select-position">
                                     <select id="select5">
-                                        <option value="0" selected>English</option>
-                                        <option value="1">Español</option>
-                                        <option value="2">Filipino</option>
-                                        <option value="3">Français</option>
-                                        <option value="4">العربية</option>
-                                        <option value="5">हिन्दी</option>
-                                        <option value="6">বাংলা</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->iso2}}" @selected(app()->getLocale() == $language->iso2)>{{$language->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-middle">
                         <ul class="useful-links">
@@ -47,13 +43,21 @@
                     <div class="top-end">
                         <div class="user">
                             <i class="lni lni-user"></i>
-                            Hello
+                            @php
+                                app()->setLocale('ru')
+                            @endphp
+                            {{ __('site.hello') }}
                         </div>
                         <ul class="user-login">
                             @auth()
                                 <li>
                                     <a href="{{route('profile.dashboard')}}">{{auth()->user()->name}}</a>
                                 </li>
+                                @if(auth()->user()->is_admin)
+                                    <li>
+                                        <a href="{{route('admin.index')}}">Adminka</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <form action="{{route('logout')}}" method="post">
                                         @csrf
@@ -142,22 +146,26 @@
                                     </div>
                                     <ul class="shopping-list">
                                         @foreach($basket->basketItems as $basketItem )
-                                        <li>
-                                            <a href="{{route('basket.remove-basket-Item',$basketItem)}}" class="remove" title="Remove this item"><i
-                                                    class="lni lni-close"></i></a>
-                                            <div class="cart-img-head">
-                                                <a class="cart-img" href="{{route('products.show',$basketItem->product)}}"><img
-                                                        src="https://via.placeholder.com/100x100"
-                                                        alt="#"></a>
-                                            </div>
+                                            <li>
+                                                <a href="{{route('basket.remove-basket-Item',$basketItem)}}"
+                                                   class="remove" title="Remove this item"><i
+                                                        class="lni lni-close"></i></a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img"
+                                                       href="{{route('products.show',$basketItem->product)}}"><img
+                                                            src="https://via.placeholder.com/100x100"
+                                                            alt="#"></a>
+                                                </div>
                                                 <div class="content">
                                                     <h4>
                                                         <a href="{{route('products.show',$basketItem->product)}}">
-                                                           {{$basketItem->product->name}}</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">{{money($basketItem->product->discount_price)}}</span></p>
+                                                            {{$basketItem->product->name}}</a></h4>
+                                                    <p class="quantity">1x - <span
+                                                            class="amount">{{money($basketItem->product->discount_price)}}</span>
+                                                    </p>
                                                 </div>
 
-                                        </li>
+                                            </li>
                                         @endforeach
                                     </ul>
                                     <div class="bottom">

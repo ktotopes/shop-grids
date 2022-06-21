@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -18,13 +19,23 @@ Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name
 
 Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
 Route::get('/basket/add/{product}', [BasketController::class, 'addToBasket'])->name('basket.add-to-basket');
-Route::get('/basket/remove/{basketItem}', [BasketController::class, 'removeBasketItem'])->name('basket.remove-basket-Item');
+Route::get('/basket/remove/{basketItem}', [BasketController::class, 'removeBasketItem'])->name(
+    'basket.remove-basket-Item'
+);
 
 
 Route::group([
-    'prefix' => 'profile',
-    'as' => 'profile.',
+    'prefix'     => 'profile',
+    'as'         => 'profile.',
     'middleware' => ['auth'],
-],function (){
-Route::get('dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
+], function () {
+    Route::get('dashboard', [ProfileController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::group([
+    'prefix'     => 'admin',
+    'as'         => 'admin.',
+    'middleware' => ['auth', 'admin.auth'],
+], function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
 });
