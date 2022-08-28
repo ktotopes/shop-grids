@@ -13,8 +13,8 @@
                         <!-- Start Single Widget -->
                         <div class="single-widget search">
                             <h3>Search Product</h3>
-                            <form action="#">
-                                <input type="text" placeholder="Search Here...">
+                            <form action="{{route('products.index')}}">
+                                <input type="text" name="term" placeholder="Search Here...">
                                 <button type="submit"><i class="lni lni-search-alt"></i></button>
                             </form>
                         </div>
@@ -50,8 +50,11 @@
                         <!-- Start Single Widget -->
                         <div class="single-widget range">
                             <h3>Price Range</h3>
-                            <input type="range" class="form-range" name="range" step="1" min="100" max="10000"
-                                   value="10" onchange="rangePrimary.value=value">
+                            <form action="{{route('products.index')}}">
+                                <input type="range" class="form-range" name="range" step="1" min="100" max="10000"
+                                       value="10" onchange="rangePrimary.value=value">
+                                <button type="submit"><i class="lni lni-search-alt"></i>search</button>
+                            </form>
                             <div class="range-inner">
                                 <label>$</label>
                                 <input type="text" id="rangePrimary" placeholder="100"/>
@@ -201,10 +204,10 @@
                                                         <div class="product-image">
                                                             <img src="https://via.placeholder.com/335x335" alt="#">
 
-                                                          @include('products.partials._product_badge',['product' => $product])
+                                                            @include('products.partials._product_badge',['product' => $product])
 
                                                             <div class="button">
-                                                             @include('products.partials._add_to_cart')
+                                                                @include('products.partials._add_to_cart')
                                                             </div>
                                                         </div>
                                                     </div>
@@ -215,22 +218,22 @@
                                                                 <a href="{{route('products.show',$product)}}">{{$product->name}}</a>
                                                             </h4>
                                                             <ul class="review">
-                                                              @include('partials._review')
+                                                                @include('partials._review')
                                                             </ul>
-                                                           @include('partials._price',['product' => $product])
+                                                            @include('partials._price',['product' => $product])
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <!-- Pagination -->
-                                                {{$products->links()}}
-                                                <!--/ End Pagination -->
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!-- Pagination -->
+                                            {{$products->links()}}
+                                            <!--/ End Pagination -->
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,7 @@ class BasketComposer
                 'product' => fn($q) => $q->with(['category']),
             ]),
         ]);
-
+        
         $basketPricing = new BasketPricingService();
         $basketPricing->calc($basket);
 

@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::query()->with(['category'])->paginate(9);
+        $term = $request->input('term');
+        $price = $request->input('range');
+
+        $products = Product::query()->with(['category'])
+            ->where('name','like',"%$term%")
+            ->where('price','<',"$price")
+            ->orderBy('mark','desc')
+            ->paginate(9);
 
         return view('products.index', compact('products'));
     }

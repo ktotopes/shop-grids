@@ -39,3 +39,5 @@ Route::group([
 ], function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 });
+
+
